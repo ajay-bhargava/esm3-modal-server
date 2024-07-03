@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lensutils"
+version = "0.0.1"
+requires-python = ">=3.10"
+authors = [
+  {name = "Ajay Bhargava", email = "ajay@with-context.co"},
+]
+description = "Exploration of the ESM3 Script."
+readme = "README.md"
+
+[tool.pytest.ini_options]
+addopts = ["-v"]
+filterwarnings = ["error", "ignore::DeprecationWarning"]
+testpaths = [
+    "__tests__"
+]
+
+[tool.ruff] # https://github.com/charliermarsh/ruff 
+fix = true
+ignore-init-module-imports = true
+line-length = 100
+select = ["A", "ASYNC", "B", "C4", "C90", "D", "DTZ", "E", "F", "FLY", "FURB", "I", "ISC", "LOG", "N", "NPY", "PERF", "PGH", "PIE", "PLC", "PLE", "PLR", "PLW", "PT", "RET", "RUF", "RSE", "SIM", "TID", "UP", "W", "YTT"]
+ignore = ["E501","PGH003", "RET504", "S101"]
+unfixable = ["F401", "F841"]
+src = ["src", "__tests__"]
+target-version = "py311"
