@@ -36,14 +36,25 @@ source .venv/bin/activate
 
 
 
-### Step 2: Running the Inference Server (Modal)
+### Step 2: Storing the HF secrets for the Inference Server (Modal)
 ---
 
 You will need to store an `.env` variable for your hugging face token. This is stored on the [Modal Dashboard](https://modal.com/). 
 
 
+### Step 3a: Running your Modal Server
+---
 
-### Step 3: Running the `.ipynb` file
+To run the Modal Server ephermerally, use the following command:
+
+```bash
+modal serve src/esm3_hacking/endpoint.py
+```
+
+You are now able to make inference requests to the ephemeral server.
+
+
+### Step 3b: Running the `.ipynb` file
 ---
 
 This is self-explanatory. You will need to run the `.ipynb` file to send a request to the server.
