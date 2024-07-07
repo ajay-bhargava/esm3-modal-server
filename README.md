@@ -12,6 +12,12 @@ This guide will walk you through the process of setting up an ESM3 Inference Ser
 3. Running the `.ipynb` file to send a request to the server.
 
 
+# What is ESM3?
+
+ESM3 is a protein language model developed by [Evolutionary Scale AI](https://evolutionaryscale-public.s3.us-east-2.amazonaws.com/research/esm3.pdf). It is able to reason protein structures. It is trained on a combination of structure, function and seqeuence data. As a generative masked model, you can present partial sequences to the model and it will generate the rest of the sequence given a set of blanks. The general model architecture is presented below. 
+
+![ESM3 Architecture](./docs/ESM3%20Architecture.png)
+
 # Environment Setup
 
 Ensure you have `uv` installed as your package manager. Use:
