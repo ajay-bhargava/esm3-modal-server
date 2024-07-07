@@ -3,13 +3,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "lensutils"
+name = "esm3-modal-deployment"
 version = "0.0.1"
 requires-python = ">=3.10"
 authors = [
-  {name = "Ajay Bhargava", email = "ajay@with-context.co"},
+  {name = "Ajay Bhargava", email = "bhargava.ajay@gmail.com"},
 ]
-description = "Exploration of the ESM3 Script."
+description = "Exploration of the ESM3 Model and its inference engine on Modal."
 readme = "README.md"
 
 [tool.pytest.ini_options]

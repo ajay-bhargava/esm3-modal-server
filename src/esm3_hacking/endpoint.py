@@ -10,6 +10,8 @@ import modal
 def download_model():
     """Download the ESM3 model."""
     try:
+        import os
+
         import torch
         from esm.models.esm3 import ESM3
         from huggingface_hub import login
@@ -17,7 +19,7 @@ def download_model():
     except ImportError as err:
         raise ImportError("Please install huggingface-hub and esm to download the model.") from err
 
-    login(token="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")
+    login(token=os.environ["HF_TOKEN"])
     ESM3.from_pretrained("esm3_sm_open_v1", device=torch.device("cuda"))
 
 
@@ -25,7 +27,8 @@ def download_model():
 ESM3_IMAGE = (
     modal.Image.from_registry("nvidia/cuda:12.1.1-devel-ubuntu22.04", add_python="3.11")
     .pip_install("esm==3.0.0", "huggingface-hub", "torch", "pytz", "rich")
-    .run_function(download_model, gpu="any")
+    .run_function(download_model, gpu="any", secrets=[modal.Secret.from_name("hf-token")])
+    .env({"TOKENIZERS_PARALLELISM": "true"})
 )
 
 # Time Constants
@@ -41,10 +44,11 @@ app = modal.App("example-esm3-inference-endpoint")
 
 @app.cls(
     image=ESM3_IMAGE,
-    timeout=20 * MINUTES,
+    timeout=5 * MINUTES,
     container_idle_timeout=5 * MINUTES,
     gpu="any",
     mounts=[modal.Mount.from_local_python_packages("src.esm3_hacking.lib.deserializer")],
+    secrets=[modal.Secret.from_name("hf-token")],
 )
 class Model:
     """Model class for the ESM3 model."""
