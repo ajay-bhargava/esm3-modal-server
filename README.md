@@ -45,7 +45,7 @@ source .venv/bin/activate
 ### Step 2: Storing the HF secrets for the Inference Server (Modal)
 ---
 
-You will need to store an `.env` variable for your hugging face token. This is stored on the [Modal Dashboard](https://modal.com/). 
+You will need to store a secret for your hugging face token. This is stored on the [Modal Dashboard](https://modal.com/). 
 
 
 ### Step 3a: Running your Modal Server
